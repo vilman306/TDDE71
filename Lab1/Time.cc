@@ -178,7 +178,7 @@ void Time::Increment()
     m_Time.Second = (m_Time.Second == s_MaxSecond) ? 0 : m_Time.Second + 1;
     if (m_Time.Second != 0)
         return;
-    // Increase or reset minute if second got was max
+    // Increase or reset minute if second was max
     m_Time.Minute = (m_Time.Minute == s_MaxMinute) ? 0 : m_Time.Minute + 1;
     if (m_Time.Minute != 0)
         return;
