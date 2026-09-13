@@ -128,7 +128,7 @@ Time::Time(const std::string& s)
     validate_time_in_bounds(m_Time);
 }
 
-std::string Time::to_string(bool twelve_hour) const
+std::string Time::ToString(bool twelve_hour) const
 {
     std::ostringstream oss{};
     unsigned int hour = m_Time.Hour;
@@ -153,12 +153,12 @@ std::string Time::to_string(bool twelve_hour) const
             << m_Time.Millisecond;
 
     if (twelve_hour)
-        oss << (is_am() ? "am" : "pm");
+        oss << (IsAM() ? "am" : "pm");
 
     return oss.str();
 }
 
-bool Time::is_am() const
+bool Time::IsAM() const
 {
     return (m_Time.Hour < 12);
 }
@@ -241,7 +241,7 @@ bool operator!=(const Time& left, const Time& right)
 
 std::ostream& operator<<(std::ostream& os, const Time& time)
 {
-    os << time.to_string();
+    os << time.ToString();
     return os;
 }
 

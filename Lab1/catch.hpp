@@ -201,9 +201,9 @@ namespace Catch {
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
-// Android somehow still does not support std::to_string
+// Android somehow still does not support std::ToString
 #if defined(__ANDROID__)
-#    define CATCH_INTERNAL_CONFIG_NO_CPP11_TO_STRING
+#    define CATCH_INTERNAL_CONFIG_NO_CPP11_ToString
 #    define CATCH_INTERNAL_CONFIG_ANDROID_LOGWRITE
 #endif
 
@@ -226,12 +226,12 @@ namespace Catch {
 // Required for some versions of Cygwin to declare gettimeofday
 // see: http://stackoverflow.com/questions/36901803/gettimeofday-not-declared-in-this-scope-cygwin
 #   define _BSD_SOURCE
-// some versions of cygwin (most) do not support std::to_string. Use the libstd check.
+// some versions of cygwin (most) do not support std::ToString. Use the libstd check.
 // https://gcc.gnu.org/onlinedocs/gcc-4.8.2/libstdc++/api/a01053_source.html line 2812-2813
 # if !((__cplusplus >= 201103L) && defined(_GLIBCXX_USE_C99) \
            && !defined(_GLIBCXX_HAVE_BROKEN_VSWPRINTF))
 
-#    define CATCH_INTERNAL_CONFIG_NO_CPP11_TO_STRING
+#    define CATCH_INTERNAL_CONFIG_NO_CPP11_ToString
 
 # endif
 #endif // __CYGWIN__
@@ -365,8 +365,8 @@ namespace Catch {
 #   define CATCH_CONFIG_WCHAR
 #endif
 
-#if !defined(CATCH_INTERNAL_CONFIG_NO_CPP11_TO_STRING) && !defined(CATCH_CONFIG_NO_CPP11_TO_STRING) && !defined(CATCH_CONFIG_CPP11_TO_STRING)
-#    define CATCH_CONFIG_CPP11_TO_STRING
+#if !defined(CATCH_INTERNAL_CONFIG_NO_CPP11_ToString) && !defined(CATCH_CONFIG_NO_CPP11_ToString) && !defined(CATCH_CONFIG_CPP11_ToString)
+#    define CATCH_CONFIG_CPP11_ToString
 #endif
 
 #if defined(CATCH_INTERNAL_CONFIG_CPP17_OPTIONAL) && !defined(CATCH_CONFIG_NO_CPP17_OPTIONAL) && !defined(CATCH_CONFIG_CPP17_OPTIONAL)
@@ -1191,7 +1191,7 @@ struct AutoReg : NonCopyable {
             void reg_tests() {                                          \
                 int index = 0;                                    \
                 using expander = int[];                           \
-                (void)expander{(Catch::AutoReg( Catch::makeTestInvoker( &TestFunc<Types> ), CATCH_INTERNAL_LINEINFO, Catch::StringRef(), Catch::NameAndTags{ Name " - " + std::string(INTERNAL_CATCH_STRINGIZE(TmplList)) + " - " + std::to_string(index), Tags } ), index++)... };/* NOLINT */\
+                (void)expander{(Catch::AutoReg( Catch::makeTestInvoker( &TestFunc<Types> ), CATCH_INTERNAL_LINEINFO, Catch::StringRef(), Catch::NameAndTags{ Name " - " + std::string(INTERNAL_CATCH_STRINGIZE(TmplList)) + " - " + std::ToString(index), Tags } ), index++)... };/* NOLINT */\
             }                                                     \
         };\
         static int INTERNAL_CATCH_UNIQUE_NAME( globalRegistrar ) = [](){ \
@@ -1321,7 +1321,7 @@ struct AutoReg : NonCopyable {
                 void reg_tests(){\
                     int index = 0;\
                     using expander = int[];\
-                    (void)expander{(Catch::AutoReg( Catch::makeTestInvoker( &TestName<Types>::test ), CATCH_INTERNAL_LINEINFO, #ClassName, Catch::NameAndTags{ Name " - " + std::string(INTERNAL_CATCH_STRINGIZE(TmplList)) + " - " + std::to_string(index), Tags } ), index++)... };/* NOLINT */ \
+                    (void)expander{(Catch::AutoReg( Catch::makeTestInvoker( &TestName<Types>::test ), CATCH_INTERNAL_LINEINFO, #ClassName, Catch::NameAndTags{ Name " - " + std::string(INTERNAL_CATCH_STRINGIZE(TmplList)) + " - " + std::ToString(index), Tags } ), index++)... };/* NOLINT */ \
                 }\
             };\
             static int INTERNAL_CATCH_UNIQUE_NAME( globalRegistrar ) = [](){\
@@ -11454,15 +11454,15 @@ namespace Catch {
 }
 
 // end catch_polyfills.hpp
-// start catch_to_string.hpp
+// start catch_ToString.hpp
 
 #include <string>
 
 namespace Catch {
     template <typename T>
-    std::string to_string(T const& t) {
-#if defined(CATCH_CONFIG_CPP11_TO_STRING)
-        return std::to_string(t);
+    std::string ToString(T const& t) {
+#if defined(CATCH_CONFIG_CPP11_ToString)
+        return std::ToString(t);
 #else
         ReusableStringStream rss;
         rss << t;
@@ -11471,7 +11471,7 @@ namespace Catch {
     }
 } // end namespace Catch
 
-// end catch_to_string.hpp
+// end catch_ToString.hpp
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>

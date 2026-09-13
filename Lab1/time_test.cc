@@ -9,9 +9,9 @@ TEST_CASE("Constructors and getters")
    SECTION("Default")
    {
       Time empty{};
-      CHECK(empty.get_hour() == 0);
-      CHECK(empty.get_minute() == 0);
-      CHECK(empty.get_second() == 0);
+      CHECK(empty.GetHour() == 0);
+      CHECK(empty.GetMinute() == 0);
+      CHECK(empty.GetSecond() == 0);
    }
 
    SECTION("Integer")
@@ -29,15 +29,15 @@ TEST_CASE("Constructors and getters")
       // CHECK_THROWS( Time{13,-1,35} );
       // CHECK_THROWS( Time{13,35,-1} );
 
-      CHECK( t0.get_hour()   == 0 );
-      CHECK( t0.get_minute() == 0 );
-      CHECK( t0.get_second() == 0 );
-      CHECK( t1.get_hour()   == 12 );
-      CHECK( t1.get_minute() == 30 );
-      CHECK( t1.get_second() == 30 );
-      CHECK( t2.get_hour()   == 23 );
-      CHECK( t2.get_minute() == 59 );
-      CHECK( t2.get_second() == 59 );
+      CHECK( t0.GetHour()   == 0 );
+      CHECK( t0.GetMinute() == 0 );
+      CHECK( t0.GetSecond() == 0 );
+      CHECK( t1.GetHour()   == 12 );
+      CHECK( t1.GetMinute() == 30 );
+      CHECK( t1.GetSecond() == 30 );
+      CHECK( t2.GetHour()   == 23 );
+      CHECK( t2.GetMinute() == 59 );
+      CHECK( t2.GetSecond() == 59 );
    }
 
    SECTION("Integer + Millisecond")
@@ -59,18 +59,18 @@ TEST_CASE("Constructors and getters")
    // CHECK_THROWS(Time{35, 35, -1, 100});
    // CHECK_THROWS(Time{35, 35, 35, -1});
 
-   CHECK(t0.get_hour() == 0);
-   CHECK(t0.get_minute() == 0);
-   CHECK(t0.get_second() == 0);
-   CHECK(t0.get_millisecond() == 0);
-   CHECK(t1.get_hour() == 12);
-   CHECK(t1.get_minute() == 30);
-   CHECK(t1.get_second() == 30);
-   CHECK(t1.get_millisecond() == 222);
-   CHECK(t2.get_hour() == 23);
-   CHECK(t2.get_minute() == 59);
-   CHECK(t2.get_second() == 59);
-   CHECK(t2.get_millisecond() == 999);
+   CHECK(t0.GetHour() == 0);
+   CHECK(t0.GetMinute() == 0);
+   CHECK(t0.GetSecond() == 0);
+   CHECK(t0.GetMillisecond() == 0);
+   CHECK(t1.GetHour() == 12);
+   CHECK(t1.GetMinute() == 30);
+   CHECK(t1.GetSecond() == 30);
+   CHECK(t1.GetMillisecond() == 222);
+   CHECK(t2.GetHour() == 23);
+   CHECK(t2.GetMinute() == 59);
+   CHECK(t2.GetSecond() == 59);
+   CHECK(t2.GetMillisecond() == 999);
    }
 
    SECTION("String")
@@ -95,15 +95,15 @@ TEST_CASE("Constructors and getters")
       CHECK_THROWS(Time("12:34:56.789:10"));
       CHECK_THROWS(Time("12:34:56.7.89"));
 
-      CHECK( t0.get_hour()   == 0 );
-      CHECK( t0.get_minute() == 0 );
-      CHECK( t0.get_second() == 0 );
-      CHECK( t1.get_hour()   == 12 );
-      CHECK( t1.get_minute() == 30 );
-      CHECK( t1.get_second() == 30 );
-      CHECK( t2.get_hour()   == 23 );
-      CHECK( t2.get_minute() == 59 );
-      CHECK( t2.get_second() == 59 );
+      CHECK( t0.GetHour()   == 0 );
+      CHECK( t0.GetMinute() == 0 );
+      CHECK( t0.GetSecond() == 0 );
+      CHECK( t1.GetHour()   == 12 );
+      CHECK( t1.GetMinute() == 30 );
+      CHECK( t1.GetSecond() == 30 );
+      CHECK( t2.GetHour()   == 23 );
+      CHECK( t2.GetMinute() == 59 );
+      CHECK( t2.GetSecond() == 59 );
    }
 
    SECTION("String + Millisecond")
@@ -134,30 +134,30 @@ TEST_CASE("Constructors and getters")
       CHECK_THROWS(Time{"12.34.56:100"});
       CHECK_THROWS(Time{"12:3456.100"});
 
-      CHECK(t0.get_hour() == 0);
-      CHECK(t0.get_minute() == 0);
-      CHECK(t0.get_second() == 0);
-      CHECK(t0.get_millisecond() == 0);
-      CHECK(t1.get_hour() == 12);
-      CHECK(t1.get_minute() == 30);
-      CHECK(t1.get_second() == 30);
-      CHECK(t1.get_millisecond() == 222);
-      CHECK(t2.get_hour() == 23);
-      CHECK(t2.get_minute() == 59);
-      CHECK(t2.get_second() == 59);
-      CHECK(t2.get_millisecond() == 999);
-      CHECK(t3.get_hour() == 1);
-      CHECK(t3.get_minute() == 2);
-      CHECK(t3.get_second() == 3);
-      CHECK(t3.get_millisecond() == 4);
-      CHECK(t4.get_hour() == 1);
-      CHECK(t4.get_minute() == 2);
-      CHECK(t4.get_second() == 3);
-      CHECK(t4.get_millisecond() == 4);
-      CHECK(t5.get_hour() == 1);
-      CHECK(t5.get_minute() == 2);
-      CHECK(t5.get_second() == 3);
-      CHECK(t5.get_millisecond() == 4);
+      CHECK(t0.GetHour() == 0);
+      CHECK(t0.GetMinute() == 0);
+      CHECK(t0.GetSecond() == 0);
+      CHECK(t0.GetMillisecond() == 0);
+      CHECK(t1.GetHour() == 12);
+      CHECK(t1.GetMinute() == 30);
+      CHECK(t1.GetSecond() == 30);
+      CHECK(t1.GetMillisecond() == 222);
+      CHECK(t2.GetHour() == 23);
+      CHECK(t2.GetMinute() == 59);
+      CHECK(t2.GetSecond() == 59);
+      CHECK(t2.GetMillisecond() == 999);
+      CHECK(t3.GetHour() == 1);
+      CHECK(t3.GetMinute() == 2);
+      CHECK(t3.GetSecond() == 3);
+      CHECK(t3.GetMillisecond() == 4);
+      CHECK(t4.GetHour() == 1);
+      CHECK(t4.GetMinute() == 2);
+      CHECK(t4.GetSecond() == 3);
+      CHECK(t4.GetMillisecond() == 4);
+      CHECK(t5.GetHour() == 1);
+      CHECK(t5.GetMinute() == 2);
+      CHECK(t5.GetSecond() == 3);
+      CHECK(t5.GetMillisecond() == 4);
    }
 }
 
@@ -170,29 +170,29 @@ TEST_CASE("operator++")
    Time t4{23, 59, 59};
    SECTION("Prefix increment")
    {
-      CHECK((++t0).to_string() == "00:00:01");
-      CHECK((++t1).to_string() == "12:00:00");
-      CHECK((++t2).to_string() == "12:00:01");
-      CHECK((++t3).to_string() == "13:00:01");
-      CHECK((++t4).to_string() == "00:00:00");
+      CHECK((++t0).ToString() == "00:00:01");
+      CHECK((++t1).ToString() == "12:00:00");
+      CHECK((++t2).ToString() == "12:00:01");
+      CHECK((++t3).ToString() == "13:00:01");
+      CHECK((++t4).ToString() == "00:00:00");
    }
    SECTION("Postfix increment")
    {
-      CHECK((t0++).to_string() == "00:00:00");
-      CHECK((t1++).to_string() == "11:59:59");
-      CHECK((t2++).to_string() == "12:00:00");
-      CHECK((t3++).to_string() == "13:00:00");
-      CHECK((t4++).to_string() == "23:59:59");
+      CHECK((t0++).ToString() == "00:00:00");
+      CHECK((t1++).ToString() == "11:59:59");
+      CHECK((t2++).ToString() == "12:00:00");
+      CHECK((t3++).ToString() == "13:00:00");
+      CHECK((t4++).ToString() == "23:59:59");
 
-      CHECK((t0).to_string() == "00:00:01");
-      CHECK((t1).to_string() == "12:00:00");
-      CHECK((t2).to_string() == "12:00:01");
-      CHECK((t3).to_string() == "13:00:01");
-      CHECK((t4).to_string() == "00:00:00");
+      CHECK((t0).ToString() == "00:00:01");
+      CHECK((t1).ToString() == "12:00:00");
+      CHECK((t2).ToString() == "12:00:01");
+      CHECK((t3).ToString() == "13:00:01");
+      CHECK((t4).ToString() == "00:00:00");
    }
 }
 
-TEST_CASE("to_string")
+TEST_CASE("ToString")
 {
    Time t0{};
    Time t1{11, 59, 59};
@@ -205,54 +205,54 @@ TEST_CASE("to_string")
    Time t8{"12:34:56.0"};
    SECTION("24 hour format no argument")
    {
-      CHECK(t0.to_string() == "00:00:00");
-      CHECK(t1.to_string() == "11:59:59");
-      CHECK(t2.to_string() == "12:00:00");
-      CHECK(t3.to_string() == "13:00:00");
-      CHECK(t4.to_string() == "23:59:59");
-      CHECK(t5.to_string() == "12:34:56.078");
-      CHECK(t6.to_string() == "12:34:56");
-      CHECK(t7.to_string() == "12:34:56.078");
-      CHECK(t8.to_string() == "12:34:56");
+      CHECK(t0.ToString() == "00:00:00");
+      CHECK(t1.ToString() == "11:59:59");
+      CHECK(t2.ToString() == "12:00:00");
+      CHECK(t3.ToString() == "13:00:00");
+      CHECK(t4.ToString() == "23:59:59");
+      CHECK(t5.ToString() == "12:34:56.078");
+      CHECK(t6.ToString() == "12:34:56");
+      CHECK(t7.ToString() == "12:34:56.078");
+      CHECK(t8.ToString() == "12:34:56");
    }
 
    SECTION("24 hour format with argument")
    {
-      CHECK(t0.to_string(false) == "00:00:00");
-      CHECK(t1.to_string(false) == "11:59:59");
-      CHECK(t2.to_string(false) == "12:00:00");
-      CHECK(t3.to_string(false) == "13:00:00");
-      CHECK(t4.to_string(false) == "23:59:59");
-      CHECK(t5.to_string(false) == "12:34:56.078");
-      CHECK(t6.to_string(false) == "12:34:56");
-      CHECK(t7.to_string(false) == "12:34:56.078");
-      CHECK(t8.to_string(false) == "12:34:56");
+      CHECK(t0.ToString(false) == "00:00:00");
+      CHECK(t1.ToString(false) == "11:59:59");
+      CHECK(t2.ToString(false) == "12:00:00");
+      CHECK(t3.ToString(false) == "13:00:00");
+      CHECK(t4.ToString(false) == "23:59:59");
+      CHECK(t5.ToString(false) == "12:34:56.078");
+      CHECK(t6.ToString(false) == "12:34:56");
+      CHECK(t7.ToString(false) == "12:34:56.078");
+      CHECK(t8.ToString(false) == "12:34:56");
    }
 
    SECTION("12 hour format")
    {
-      CHECK(t0.to_string(true) == "12:00:00am");
-      CHECK(t1.to_string(true) == "11:59:59am");
-      CHECK(t2.to_string(true) == "12:00:00pm");
-      CHECK(t3.to_string(true) == "01:00:00pm");
-      CHECK(t4.to_string(true) == "11:59:59pm");
-      CHECK(t5.to_string(true) == "12:34:56.078pm");
-      CHECK(t6.to_string(true) == "12:34:56pm");
-      CHECK(t7.to_string(true) == "12:34:56.078pm");
-      CHECK(t8.to_string(true) == "12:34:56pm");
+      CHECK(t0.ToString(true) == "12:00:00am");
+      CHECK(t1.ToString(true) == "11:59:59am");
+      CHECK(t2.ToString(true) == "12:00:00pm");
+      CHECK(t3.ToString(true) == "01:00:00pm");
+      CHECK(t4.ToString(true) == "11:59:59pm");
+      CHECK(t5.ToString(true) == "12:34:56.078pm");
+      CHECK(t6.ToString(true) == "12:34:56pm");
+      CHECK(t7.ToString(true) == "12:34:56.078pm");
+      CHECK(t8.ToString(true) == "12:34:56pm");
    }
 }
 
-TEST_CASE ("is_am")
+TEST_CASE ("IsAM")
 {
    Time t0{"05:00:00"};
    Time t1{"14:00:00"};
    Time t2{11,59,59,999};
    Time t3{12,00,00,000};
-   CHECK       ( t0.is_am() );
-   CHECK_FALSE ( t1.is_am() );
-   CHECK       ( t2.is_am() );
-   CHECK_FALSE ( t3.is_am() );
+   CHECK       ( t0.IsAM() );
+   CHECK_FALSE ( t1.IsAM() );
+   CHECK       ( t2.IsAM() );
+   CHECK_FALSE ( t3.IsAM() );
 }
 
 TEST_CASE("GetSeconds")
@@ -324,17 +324,17 @@ TEST_CASE("operator<<")
    SECTION("Test 1")
    {
       oss << t0;
-      CHECK(oss.str() == t0.to_string());
+      CHECK(oss.str() == t0.ToString());
    }
    SECTION("Test 2")
    {
       oss << t1;
-      CHECK(oss.str() == t1.to_string());
+      CHECK(oss.str() == t1.ToString());
    }
    SECTION("Test 3")
    {
       oss << t2;
-      CHECK(oss.str() == t2.to_string());
+      CHECK(oss.str() == t2.ToString());
    }
 }
 

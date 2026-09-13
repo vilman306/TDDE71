@@ -23,12 +23,12 @@ public:
     Time& operator++(); // Prefix increment
     Time operator++(int); // Postfix increment
     
-    std::string to_string(bool twelve_hour = false) const;
-    bool is_am() const;
-    unsigned int get_hour() const { return m_Time.Hour; }
-    unsigned int get_minute() const { return m_Time.Minute; }
-    unsigned int get_second() const { return m_Time.Second; }
-    unsigned int get_millisecond() const { return m_Time.Millisecond; }
+    std::string ToString(bool twelve_hour = false) const;
+    bool IsAM() const;
+    unsigned int GetHour() const { return m_Time.Hour; }
+    unsigned int GetMinute() const { return m_Time.Minute; }
+    unsigned int GetSecond() const { return m_Time.Second; }
+    unsigned int GetMillisecond() const { return m_Time.Millisecond; }
     
     float GetSeconds() const; // Used in operator overloads
 
