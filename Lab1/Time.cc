@@ -11,20 +11,23 @@ void validate_time_in_bounds(TimeData time)
 {
     if (time.Hour > Time::s_MaxHour)
     {
-        throw std::out_of_range("Hour must be in interval [0, 23]");
+        throw std::out_of_range(std::string("Hour must be in interval [0, ") +
+                                std::to_string(Time::s_MaxHour) + "]");
     }
     if (time.Minute > Time::s_MaxMinute)
     {
-        throw std::out_of_range(std::string("Minute must be in interval [0, ")
-                                + std::to_string(Time::s_MaxMinute) + "]");
+        throw std::out_of_range(std::string("Minute must be in interval [0, ") +
+                                std::to_string(Time::s_MaxMinute) + "]");
     }
     if (time.Second > Time::s_MaxSecond)
     {
-        throw std::out_of_range("Second must be in interval [0, 59]");
+        throw std::out_of_range(std::string("Second must be in interval [0, ") +
+                                std::to_string(Time::s_MaxSecond) + "]");
     }
     if (time.Millisecond > Time::s_MaxMillisecond)
     {
-        throw std::out_of_range("Millisecond must be in interval [0, 999]");
+        throw std::out_of_range(std::string("Second must be in interval [0, ") +
+                                std::to_string(Time::s_MaxMillisecond) + "]");
     }
 }
 
