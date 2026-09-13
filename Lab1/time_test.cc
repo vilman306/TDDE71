@@ -91,6 +91,9 @@ TEST_CASE("Constructors and getters")
       CHECK_THROWS( Time{"123::456"} );
       CHECK_THROWS( Time{"12:34"} );
       CHECK_THROWS( Time{"12.34.56"} );
+      CHECK_THROWS( Time("12:34:56.789.10") );
+      CHECK_THROWS(Time("12:34:56.789:10"));
+      CHECK_THROWS(Time("12:34:56.7.89"));
 
       CHECK( t0.get_hour()   == 0 );
       CHECK( t0.get_minute() == 0 );

@@ -57,7 +57,7 @@ Time::Time(const std::string& s)
 {
     // Extract string data
     // ===================
-    std::stringstream ss{s};
+    std::istringstream iss{s};
     int hour{}, minute{}, second{}, millisecond{};
     int itemp{};
     char ctemp{};
@@ -65,27 +65,27 @@ Time::Time(const std::string& s)
     // (Expected format is HH:MM:SS.mmm or HH:MM:SS)
     // (H:M:S.m also works)
     // Get hour
-    if (ss >> itemp)
+    if (iss >> itemp)
         hour = itemp;
     else
         throw_invalid_string_format();
     
     // Check for colon
-    if (!(ss >> ctemp && ctemp == ':'))
+    if (!(iss >> ctemp && ctemp == ':'))
         throw_invalid_string_format();
     
     // Get minute
-    if (ss >> itemp)
+    if (iss >> itemp)
         minute = itemp;
     else
         throw_invalid_string_format();
     
     // Check for colon
-    if (!(ss >> ctemp && ctemp == ':'))
+    if (!(iss >> ctemp && ctemp == ':'))
         throw_invalid_string_format();
     
     // Get second
-    if (ss >> itemp)
+    if (iss >> itemp)
         second = itemp;
     else
         throw_invalid_string_format();
@@ -97,21 +97,21 @@ Time::Time(const std::string& s)
     }
 
     // Handle milliseconds:
-    bool has_millisecond = !ss.eof();
+    bool has_millisecond = !iss.eof();
     if (has_millisecond)
     {
         // Check for dot
-        if (!(ss >> ctemp && ctemp == '.'))
+        if (!(iss >> ctemp && ctemp == '.'))
             throw_invalid_string_format();
 
         // Get millisecond
-        if (ss >> itemp)
+        if (iss >> itemp)
             millisecond = itemp;
         else
             throw_invalid_string_format();
 
         // Throw if there are characters after the milliseconds
-        if (!ss.eof())
+        if (!iss.eof())
             throw_invalid_string_format();
 
         // Throw if millisecond data is negative
@@ -130,32 +130,32 @@ Time::Time(const std::string& s)
 
 std::string Time::to_string(bool twelve_hour) const
 {
-    std::stringstream ss;
+    std::ostringstream oss{};
     unsigned int hour = m_Time.Hour;
 
     if (twelve_hour)
         hour = ((hour + 11) % 12) + 1;
-    
-    ss << std::setfill('0')
-       << std::right
-       << std::setw(2)
-       << hour
-       << ':'
-       << std::setw(2)
-       << m_Time.Minute
-       << ':'
-       << std::setw(2)
-       << m_Time.Second;
-    
-    if (m_Time.Millisecond != 0)
-        ss << '.'
-           << std::setw(3)
-           << m_Time.Millisecond;
-    
-    if (twelve_hour)
-        ss << (is_am() ? "am" : "pm");
 
-    return ss.str();
+    oss << std::setfill('0')
+        << std::right
+        << std::setw(2)
+        << hour
+        << ':'
+        << std::setw(2)
+        << m_Time.Minute
+        << ':'
+        << std::setw(2)
+        << m_Time.Second;
+
+    if (m_Time.Millisecond != 0)
+        oss << '.'
+            << std::setw(3)
+            << m_Time.Millisecond;
+
+    if (twelve_hour)
+        oss << (is_am() ? "am" : "pm");
+
+    return oss.str();
 }
 
 bool Time::is_am() const
