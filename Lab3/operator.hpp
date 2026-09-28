@@ -9,6 +9,11 @@
 class Operator : public Node
 {
 public:
+    ~Operator() { delete child_left; delete child_right; } // Node::~Node is called after this
+
+    Operator(const Operator &) = delete;
+    Operator &operator=(const Operator &) = delete;
+
     std::string postfix() const override;
     std::string prefix() const override;
     std::string infix() const override;

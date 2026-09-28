@@ -1,6 +1,5 @@
 #include "operator.hpp"
 
-#include <cmath>
 #include <stdexcept>
 
 std::string Operator::postfix() const
@@ -10,7 +9,6 @@ std::string Operator::postfix() const
 
 std::string Operator::prefix() const
 {
-    // return sign + " " + child_left->prefix() + " " + child_right->prefix(); This be bugging
     return std::string{sign} + " " + child_left->prefix() + " " + child_right->prefix();
 }
 
