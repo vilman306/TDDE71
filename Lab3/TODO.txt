@@ -1,0 +1,6 @@
+sida 13
+
+Bonus: Användning av git
+Har du glömt checka in uppgifterna i git igen? Det är enklare att göra det löpande, men du vet sedan
+steg 2 hur du ska göra för att lösa det. Skapa sedan var sin branch döpt efter liuid i ert repository.
+Checka in var sitt nytt testfall i er respektive branch. Merga sedan er respektive branch med master
