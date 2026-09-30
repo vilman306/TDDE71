@@ -14,6 +14,6 @@ std::string Real::postfix() const
 std::string Integer::postfix() const
 {
     std::ostringstream oss;
-    oss << std::setprecision(3) << std::fixed << value;
+    oss << value;
     return oss.str();
 }

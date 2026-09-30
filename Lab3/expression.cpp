@@ -85,7 +85,7 @@ void Expression::from_postfix(const std::string &postfix)
             case Operator::signs::addition:
                 // a = new Addition{l, r};
 
-                // If we don't release l and r, the pointers they hold will be
+                // Note: if we don't release l and r, the pointers they hold will be
                 // deleted at the end of this loop iteration because they go out of scope
                 a = std::make_unique<Addition>(l.release(), r.release());
                 break;

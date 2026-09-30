@@ -26,7 +26,7 @@ bool process_command(const std::string &command, Expression &e)
         saved_expressions.push_back(Expression{e.to_infix()});
     }
     else if (command == "list") {
-        for (int i{1}; i <= saved_expressions.size(); i++)
+        for (unsigned int i{1}; i <= saved_expressions.size(); i++)
         {
             std::cout << i << ": " << saved_expressions.at(i-1).to_infix() << "\n";
         }
@@ -39,28 +39,26 @@ bool process_command(const std::string &command, Expression &e)
         iss >> s;
         if (s == "activate")
         {
-            iss >> s;
-            try {
-                int index{std::stoi(s)}; // Can throw!
-                if (index <= 0 || index > saved_expressions.size())
-                    throw std::logic_error("There is no expression at index " + s);
-                e.from_postfix(saved_expressions.at(index - 1).to_postfix());
-            }
-            catch (const std::exception &exception)
-            {
-                std::ostringstream oss{};
-                oss << exception.what();
-                if (oss.str() == "stoi")
-                    throw std::logic_error("Missing integer after :activate");
-                else
-                    throw std::logic_error(exception.what()); // Forward the error message
-            }
+            int index{};
+
+            if (iss.eof())
+                throw std::logic_error("No index inputted ");
+                
+            iss >> index;
+            if (iss.fail())
+                throw std::logic_error("Please input a number!");
+
+            else if (static_cast<unsigned int>(index) > saved_expressions.size() || index < 1)
+                throw std::logic_error("There is no expression at index " + std::to_string(index));
+            
+            
+            e.from_postfix(saved_expressions.at(index - 1).to_postfix());
         }
         else
             throw std::logic_error("Invalid command");
     }
-    
-        return true;
+
+    return true;
 }
 
 int main()
@@ -88,7 +86,7 @@ int main()
 
         catch (const std::exception &exception)
         {
-            std::cout << exception.what() << std::endl;
+            std::cerr << exception.what() << "\n";
         }
     }
 
