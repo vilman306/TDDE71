@@ -108,5 +108,31 @@ TEST_CASE("custom")
     CHECK(a->postfix() == "1 4 3 + +");
 }
 
+TEST_CASE("Modulo")
+{
+    Node *a = new Modulo{new Integer(12), new Integer(10)};
+    Node *b = new Modulo(new Real(1.2), new Real(1.0));
+    SECTION("evaluate")
+    {
+        CHECK(compare_equal(a->evaluate(), 2));
+        CHECK(compare_equal(b->evaluate(), 0.2));
+    }
+    SECTION("postfix")
+    {
+        CHECK(a->postfix() == "12 10 %");
+        CHECK(b->postfix() == "1.200 1.000 %");
+    }
+    SECTION("prefix")
+    {
+        CHECK(a->prefix() == "% 12 10");
+        CHECK(b->prefix() == "% 1.200 1.000");
+    }
+    SECTION("infix")
+    {
+        CHECK(a->infix() == "( 12 % 10 )");
+        CHECK(b->infix() == "( 1.200 % 1.000 )");
+    }
+}
+
 #if 0 // Flytta ned denna rad för att aktivera nästa TEST_CASE
 #endif
